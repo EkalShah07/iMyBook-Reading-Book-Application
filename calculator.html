@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iMyBook - Reading Time Calculator</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">i<span>My</span>Book</div>
+    <nav class="nav">
+      <a href="index.html">Discover</a>
+      <a href="calculator.html" class="active">Reading Calculator</a>
+      <a href="library.html">My Library</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Reading Time Calculator</h1>
+    <p class="subtitle">Plan your reading pace and see how long it may take to finish a book.</p>
+
+    <section class="panel">
+      <h2>Plan your reading</h2>
+      <form id="calcForm" novalidate>
+        <div class="grid cols-4">
+          <div>
+            <label for="calcPages">Total pages</label>
+            <input id="calcPages" type="number" min="1" max="10000" placeholder="e.g. 320" required>
+          </div>
+          <div>
+            <label for="calcCurrent">Current page <span class="hint">(optional)</span></label>
+            <input id="calcCurrent" type="number" min="0" placeholder="0" value="0">
+          </div>
+          <div>
+            <label for="calcSpeed">Reading speed <span class="hint">(pages / hour)</span></label>
+            <input id="calcSpeed" type="number" min="1" max="300" required>
+          </div>
+          <div>
+            <label for="calcMinutes">Time per day <span class="hint">(minutes)</span></label>
+            <input id="calcMinutes" type="number" min="5" max="1440" required>
+          </div>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn">Calculate</button>
+          <button type="button" class="btn secondary" id="saveSettingsBtn">Save My Reading Speed</button>
+        </div>
+      </form>
+      <div id="calcMessage" aria-live="polite"></div>
+      <div id="calcResult" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer>iMyBook &middot; Your reading preferences are stored on this computer</footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/calc.js"></script>
+  <script src="js/calculator.js"></script>
+</body>
+</html>

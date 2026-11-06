@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iMyBook - My Library</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">i<span>My</span>Book</div>
+    <nav class="nav">
+      <a href="index.html">Discover</a>
+      <a href="calculator.html">Reading Calculator</a>
+      <a href="library.html" class="active">My Library</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>My Library</h1>
+    <p class="subtitle">Track the books you want to read, are reading, and have finished.</p>
+
+    <div class="stats" id="stats"></div>
+
+    <!-- Create / Update form -->
+    <section class="panel">
+      <h2 id="formTitle">Add a Book</h2>
+      <form id="bookForm" novalidate>
+        <div class="grid cols-3">
+          <div>
+            <label for="fTitle">Title *</label>
+            <input id="fTitle" type="text" maxlength="150" placeholder="Book title">
+          </div>
+          <div>
+            <label for="fAuthor">Author *</label>
+            <input id="fAuthor" type="text" maxlength="100" placeholder="Author name">
+          </div>
+          <div>
+            <label for="fGenre">Genre</label>
+            <input id="fGenre" type="text" maxlength="40" placeholder="e.g. Fantasy">
+          </div>
+          <div>
+            <label for="fYear">Publication year</label>
+            <input id="fYear" type="number" placeholder="e.g. 1997">
+          </div>
+          <div>
+            <label for="fPages">Total pages *</label>
+            <input id="fPages" type="number" min="1" max="10000" placeholder="e.g. 320">
+          </div>
+          <div>
+            <label for="fStatus">Status *</label>
+            <select id="fStatus">
+              <option value="want">Want to read</option>
+              <option value="reading">Reading</option>
+              <option value="finished">Finished</option>
+            </select>
+          </div>
+          <div>
+            <label for="fCurrent">Current page</label>
+            <input id="fCurrent" type="number" min="0" placeholder="0">
+          </div>
+          <div>
+            <label for="fRating">My rating</label>
+            <select id="fRating">
+              <option value="">Not rated</option>
+              <option value="1">1 - Poor</option>
+              <option value="2">2 - Fair</option>
+              <option value="3">3 - Good</option>
+              <option value="4">4 - Very good</option>
+              <option value="5">5 - Excellent</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-top:14px">
+          <label for="fNotes">Notes <span class="hint">(max 500 characters)</span></label>
+          <textarea id="fNotes" maxlength="500" placeholder="Why do you want to read this? Thoughts so far..."></textarea>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn" id="saveBtn">Add Book</button>
+          <button type="button" class="btn secondary" id="cancelBtn" hidden>Cancel Edit</button>
+        </div>
+      </form>
+      <div id="formMessage"></div>
+    </section>
+
+    <!-- Read: list with search / filter / sort -->
+    <section>
+      <h2>Saved Books</h2>
+      <div class="toolbar">
+        <input id="filterText" type="search" placeholder="Search title or author..." aria-label="Search saved books">
+        <select id="filterStatus" aria-label="Filter by status">
+          <option value="all">All statuses</option>
+          <option value="want">Want to read</option>
+          <option value="reading">Reading</option>
+          <option value="finished">Finished</option>
+        </select>
+        <select id="sortBy" aria-label="Sort books">
+          <option value="recent">Recently added</option>
+          <option value="title">Title (A-Z)</option>
+          <option value="progress">Progress</option>
+          <option value="rating">My rating</option>
+        </select>
+      </div>
+      <div id="listMessage"></div>
+      <div id="bookList"></div>
+    </section>
+
+    <!-- Saved suggestions -->
+    <section class="panel" style="margin-top:26px">
+      <h2>Saved Suggestions</h2>
+      <p class="hint">Suggestions you generated on the Discover page are stored here.</p>
+      <div id="suggestionHistory"></div>
+      <div class="actions"><button class="btn danger small" id="clearHistoryBtn">Clear Suggestion History</button></div>
+    </section>
+  </main>
+
+  <footer>iMyBook &middot; Your library is stored on this computer (Local Storage)</footer>
+
+  <!-- Delete confirmation modal -->
+  <div class="modal-backdrop" id="confirmModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="confirmText">
+      <h2>Delete book?</h2>
+      <p id="confirmText"></p>
+      <div class="actions">
+        <button class="btn danger" id="confirmYes">Yes, delete</button>
+        <button class="btn secondary" id="confirmNo">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/models.js"></script>
+  <script src="js/calc.js"></script>
+  <script src="js/library.js"></script>
+</body>
+</html>

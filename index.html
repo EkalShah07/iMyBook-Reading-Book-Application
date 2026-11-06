@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src https://openlibrary.org">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iMyBook - Discover</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">i<span>My</span>Book</div>
+    <nav class="nav">
+      <a href="index.html" class="active">Discover</a>
+      <a href="calculator.html">Reading Calculator</a>
+      <a href="library.html">My Library</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Discover Books</h1>
+    <p class="subtitle">Search Open Library and get personalised suggestions for your next read.</p>
+
+    <!-- Search / suggestion filters -->
+    <section class="panel">
+      <h2>Find a Book</h2>
+      <form id="searchForm" novalidate>
+        <div class="grid cols-3">
+          <div>
+            <label for="keyword">Title or keyword</label>
+            <input id="keyword" type="text" maxlength="100" placeholder="e.g. Harry Potter">
+          </div>
+          <div>
+            <label for="authorInput">Author</label>
+            <input id="authorInput" type="text" maxlength="100" placeholder="e.g. Agatha Christie">
+          </div>
+          <div>
+            <label for="genre">Genre / category</label>
+            <select id="genre">
+              <option value="">Any genre</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="science fiction">Science Fiction</option>
+              <option value="romance">Romance</option>
+              <option value="mystery">Mystery</option>
+              <option value="horror">Horror</option>
+              <option value="biography">Biography</option>
+              <option value="history">History</option>
+              <option value="self-help">Self-help</option>
+              <option value="programming">Programming</option>
+              <option value="children">Children</option>
+            </select>
+          </div>
+          <div>
+            <label for="length">Preferred length <span class="hint">(for suggestions)</span></label>
+            <select id="length">
+              <option value="any">Any length</option>
+              <option value="short">Short (up to 250 pages)</option>
+              <option value="medium">Medium (251 - 450 pages)</option>
+              <option value="long">Long (451+ pages)</option>
+            </select>
+          </div>
+          <div>
+            <label for="mood">Reading mood <span class="hint">(for suggestions)</span></label>
+            <select id="mood">
+              <option value="">No preference</option>
+              <option value="relax">Relax and unwind</option>
+              <option value="learn">Learn something</option>
+              <option value="thrill">Thrilling and suspenseful</option>
+              <option value="inspire">Feel inspired</option>
+            </select>
+          </div>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn" id="searchBtn">Search Books</button>
+          <button type="button" class="btn secondary" id="suggestBtn">Suggest For Me</button>
+          <button type="button" class="btn secondary" id="clearBtn">Clear</button>
+        </div>
+      </form>
+      <p class="hint" style="margin-bottom:0">
+        <strong>Search Books</strong> lists matching books. <strong>Suggest For Me</strong> ranks books using your genre, author, length, mood and reading speed.
+      </p>
+      <div id="searchMessage"></div>
+    </section>
+
+    <!-- Results -->
+    <section>
+      <h2 id="resultsTitle">Results</h2>
+      <div id="suggestionBox"></div>
+      <div id="results">
+        <div class="empty">Search for a book or ask for a suggestion to get started.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>iMyBook &middot; Data from Open Library (openlibrary.org) &middot; CSC2923 Final Assignment</footer>
+
+  <!-- Book details modal -->
+  <div class="modal-backdrop" id="detailsModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="detailsTitle">
+      <h2 id="detailsTitle">Book details</h2>
+      <div id="detailsBody"></div>
+      <div class="actions"><button class="btn secondary" id="closeDetails">Close</button></div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/models.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/calc.js"></script>
+  <script src="js/suggest.js"></script>
+  <script src="js/discover.js"></script>
+</body>
+</html>

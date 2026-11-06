@@ -1,0 +1,14 @@
+{
+  "name": "imybook",
+  "version": "1.0.0",
+  "description": "iMyBook - Reading Book Application built with Electron (CSC2923 Final Assignment)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": ["electron", "books", "open-library", "reading"],
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.2.0"
+  }
+}
